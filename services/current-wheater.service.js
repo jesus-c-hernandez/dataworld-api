@@ -1,9 +1,10 @@
 const axios = require('axios');
+require('dotenv').config();
 
 class CurrentWeatherService {
   async get(currentWeather) {
     // console.log(currentWeather);
-    const resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${currentWeather.q}&lang=${currentWeather.lang}&units=${currentWeather.units}&appid=ae57b0f49f54af7c3ce53a9c9308949f`)
+    const resp = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${currentWeather.lat}&lon=${currentWeather.lon}&lang=${currentWeather.lang}&units=${currentWeather.units}&mode=${currentWeather.mode}&appid=${process.env.API_KEY_OP_1}`)
       // console.log(resp);
     return resp.data;
   }
