@@ -3,9 +3,11 @@ const Joi = require('joi')
 class CurrentWeatherValidator {
   get() {
     return Joi.object().keys({
-      q: Joi.string().required(),
+      lat: Joi.number().required(),
+      lon: Joi.number().required(),
       lang: Joi.string().optional().default('es'),
-      units: Joi.string().optional().default('metric')
+      units: Joi.string().optional().default('metric'),
+      mode: Joi.string().optional().default('JSON')
     }).options({ allowUnknown: true, stripUnknown: true })
   }
 }
