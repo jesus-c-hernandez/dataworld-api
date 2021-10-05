@@ -2,8 +2,13 @@ require('dotenv').config()
 const compression = require('compression')
 const helmet = require('helmet')
 const morgan = require('morgan')
+const express = require('express');
 const app = require('express')()
 const bodyParser = require('body-parser')
+const path = require('path');
+const cors = require('cors');
+
+
   // const dbHelper = require('./helpers/db.helper')
 const config = require('./config')
   // const cron = require('./cron')
@@ -12,6 +17,15 @@ const config = require('./config')
 const API_URL = config.baseURL
 
 app.use(compression())
+
+// Configurar CORS
+app.use(cors());
+
+// Lectura y parseo del body
+app.use( express.json() );
+
+// Directorio publico
+app.use( express.static('public') );
 
 // CORS
 app.use((req, res, next) => {
@@ -66,6 +80,10 @@ async function startServer() {
     console.log(new Date().toISOString(), error)
   }
 }
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve( __dirname, 'public/index.html'));
+});
 
 if (!process.env.test) startServer()
 module.exports = app
