@@ -15,8 +15,8 @@ class CurrentWeatherService {
     // console.log(currentWeather);
     const resp = await axios.get(`https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${currentWeather.lat}&lon=${currentWeather.lon}&cnt=${currentWeather.cnt}&mode=${currentWeather.mode}&lang=${currentWeather.lang}&units=${currentWeather.units}&appid=${process.env.API_KEY_OP_1}`)
       // console.log(resp);
-    //const filterData = FilterPropertiesService.filterCurrentWeatherJSON(resp.data)
-    return resp.data;
+    const filterData = FilterPropertiesService.filterCurrentWeatherArrayFutureJSON(resp.data)
+    return filterData;
   }
 }
 
