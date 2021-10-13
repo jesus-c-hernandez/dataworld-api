@@ -44,6 +44,62 @@ class CovidMiddleware {
     }
   }
 
+  async getTotalDeaths(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getTotalDeaths().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTodayDeaths(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getTodayDeaths().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getRecoveredCases(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getRecoveredCases().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTestTotals(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getTestTotals().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
 
 module.exports = new CovidMiddleware()
