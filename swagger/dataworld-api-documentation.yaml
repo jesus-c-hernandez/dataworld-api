@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  version: v1.0.0
+  title: DataWorld
+  x-logo:
+    url: https://lnx1.metricamovil.com/assets/mm-dev.png
+  description: >-
+    # Introduction
+
+    **Bienvenido a la documentación de DataWorld**
+    
+    
+  contact:
+    email: alu.18131229@correo.itlalaguna.edu.mx
+tags:
+- name: Covid
+  description: Objeto con datos del clima, (Actual, Futuro, etc.)
+- name: Current-Weather
+  description: Objeto con datos del clima, (Actual, Futuro, etc.)
+schemes:
+ - https
+paths:
+  /cases:
+      get:
+        tags:
+        - Covid
+        summary: Descripción de la petición
+        operationId: getCases
+        produces:
+        - application/json
+        parameters:
+        - in: query
+          name: country
+          description: "País del que se desea la información"
+          required: true
+          type: string
+        responses:
+          '200':
+            description: Petición Exitosa
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/CovidCases'
+          '400':
+            description: "Error de servidor"
+definitions:
+  CovidCases:
+    type: object
+    properties:
+      result:
+        type: bool
+        example: true
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            date:
+              type: date
+              example: "2021-10-14T03:19:10.000Z"
+            country:
+              type: string
+              example: "Mexico"
+            data:
+              type: int
+              example: 3738749
