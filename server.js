@@ -1,4 +1,5 @@
 require('dotenv').config()
+const axios = require('axios');
 const compression = require('compression')
 const helmet = require('helmet')
 const morgan = require('morgan')
@@ -11,7 +12,8 @@ const cors = require('cors');
 
   // const dbHelper = require('./helpers/db.helper')
 const config = require('./config')
-  // const cron = require('./cron')
+const instance = axios.create();
+// const cron = require('./cron')
 
 // const extraHeaders = [process.env.API_KEY_NAME].join(',')
 const API_URL = config.baseURL
@@ -68,6 +70,7 @@ async function startServer() {
   try {
     console.log('NODE ENV', process.env.NODE_ENV)
     const { port } = config.api
+    instance.defaults.proxy = { port: config.api }
       // await dbHelper.authenticate()
     app.listen(port, () => {
       console.log(

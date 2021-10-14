@@ -1,10 +1,12 @@
 const express = require('express')
 const CurrentWeater = require('./current-wheater.router')
+const CovidRoter = require('./covid.router')
 
 const app = express()
 
 app.use(
-  CurrentWeater
+  CurrentWeater,
+  CovidRoter
 )
 
 // app.use((err, req, res, next) => {
