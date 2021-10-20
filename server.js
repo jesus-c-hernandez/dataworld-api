@@ -58,6 +58,9 @@ async function startServer() {
     const { port } = config.api
     instance.defaults.proxy = { port: config.api }
       // await dbHelper.authenticate()
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve( __dirname, 'public/index.html'));
+    });
     app.listen(port, () => {
       console.log(
         new Date().toISOString(),
