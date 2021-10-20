@@ -87,9 +87,5 @@ async function startServer() {
   }
 }
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve( __dirname, 'public/index.html'));
-});
-
 if (!process.env.test) startServer()
 module.exports = app
