@@ -1,0 +1,737 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "v1.0.0",
+    "title": "DataWorld",
+    "x-logo": {
+      "url": "https://lnx1.metricamovil.com/assets/mm-dev.png"
+    },
+    "description": "# Introduction\n**Bienvenido a la documentación de DataWorld**",
+    "contact": {
+      "email": "alu.18131229@correo.itlalaguna.edu.mx"
+    }
+  },
+  "tags": [
+    {
+      "name": "Covid",
+      "description": "Objeto con datos de la situación actual del Covid-19"
+    },
+    {
+      "name": "Current-Weather",
+      "description": "Objeto con datos del clima, (Actual, Futuro, etc.)"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/cases": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Total de casos sospechosos y confirmados",
+        "operationId": "getCases",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/today-cases": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Número de casos registrados el día de hoy",
+        "operationId": "getTodayCases",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/active-cases": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Número de casos activos",
+        "operationId": "getActiveCases",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/total-deaths": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Total de personas fallecidas",
+        "operationId": "getTotalDeaths",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/today-deaths": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Número de muertes el día de hoy",
+        "operationId": "getTodayDeaths",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/recovered-cases": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Total de casos recuperados",
+        "operationId": "getRecoveredCases",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/test-totals": {
+      "get": {
+        "tags": [
+          "Covid"
+        ],
+        "summary": "Total de pruebas",
+        "operationId": "getTestTotals",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "description": "País del que se desea la información",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Covid"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/current-weather": {
+      "get": {
+        "tags": [
+          "Current-Weather"
+        ],
+        "summary": "Clima actual",
+        "operationId": "get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Ubicación geográfica de la ciudad, latitud",
+            "required": true,
+            "type": "float"
+          },
+          {
+            "in": "query",
+            "name": "lon",
+            "description": "Ubicación geográfica de la ciudad, longitud",
+            "required": true,
+            "type": "float"
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "description": "Idioma",
+            "required": false,
+            "value": "es",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "units",
+            "description": "Unidades de medida",
+            "required": false,
+            "value": "metric",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "description": "Formato de respuesta",
+            "required": false,
+            "value": "JSON",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Current-Weather"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    },
+    "/current-weather/future": {
+      "get": {
+        "tags": [
+          "Current-Weather"
+        ],
+        "summary": "Clima de las próximas horas",
+        "operationId": "getFuture",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Ubicación geográfica de la ciudad, latitud",
+            "required": true,
+            "type": "float"
+          },
+          {
+            "in": "query",
+            "name": "lon",
+            "description": "Ubicación geográfica de la ciudad, longitud",
+            "required": true,
+            "type": "float"
+          },
+          {
+            "in": "query",
+            "name": "cnt",
+            "description": "Horas a describir",
+            "required": true,
+            "type": "int"
+          },
+          {
+            "in": "query",
+            "name": "lang",
+            "description": "Idioma",
+            "required": false,
+            "value": "es",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "units",
+            "description": "Unidades de medida",
+            "required": false,
+            "value": "metric",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "mode",
+            "description": "Formato de respuesta",
+            "required": false,
+            "value": "JSON",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Petición Exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Current-Weather-future"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de servidor"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Covid": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "bool",
+          "example": true
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "date",
+                "example": "2021-10-14T03:19:10.000Z"
+              },
+              "country": {
+                "type": "string",
+                "example": "Mexico"
+              },
+              "data": {
+                "type": "int",
+                "example": 3738749
+              }
+            }
+          }
+        }
+      }
+    },
+    "Current-Weather": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "bool",
+          "example": true
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "coord": {
+              "type": "object",
+              "properties": {
+                "lon": {
+                  "type": "float",
+                  "example": -3.7
+                },
+                "lan": {
+                  "type": "float",
+                  "example": 40.41
+                }
+              }
+            },
+            "weather": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "int",
+                    "example": 800
+                  },
+                  "main": {
+                    "type": "string",
+                    "example": "Clear"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "cielo claro"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "example": "01d"
+                  }
+                }
+              }
+            },
+            "main": {
+              "type": "object",
+              "properties": {
+                "temp": {
+                  "type": "float",
+                  "example": 23.44
+                },
+                "feels_like": {
+                  "type": "float",
+                  "example": 22.73
+                },
+                "temp_min": {
+                  "type": "float",
+                  "example": 21.3
+                },
+                "temp_max": {
+                  "type": "float",
+                  "example": 24.85
+                },
+                "pressure": {
+                  "type": "int",
+                  "example": 1021
+                },
+                "humidity": {
+                  "type": "int",
+                  "example": 34
+                }
+              }
+            },
+            "visibility": {
+              "type": "int",
+              "example": 10000
+            },
+            "wind": {
+              "type": "object",
+              "properties": {
+                "speed": {
+                  "type": "float",
+                  "example": 0.45
+                },
+                "deg": {
+                  "type": "int",
+                  "example": 203
+                },
+                "gust": {
+                  "type": "float",
+                  "example": 1.79
+                }
+              }
+            },
+            "clouds": {
+              "type": "object",
+              "properties": {
+                "all": {
+                  "type": "int",
+                  "example": 0
+                }
+              }
+            },
+            "dt": {
+              "type": "int",
+              "example": 1634226196
+            },
+            "sys": {
+              "type": "object",
+              "properties": {
+                "country": {
+                  "type": "string",
+                  "example": "ES"
+                },
+                "sunrise": {
+                  "type": "int",
+                  "example": 1634192666
+                },
+                "sunset": {
+                  "type": "int",
+                  "example": 1634233007
+                }
+              }
+            },
+            "timezone": {
+              "type": "int",
+              "example": 7200
+            },
+            "id": {
+              "type": "int",
+              "example": 3117735
+            },
+            "name": {
+              "type": "string",
+              "example": "Madrid"
+            },
+            "cod": {
+              "type": "int",
+              "example": 200
+            }
+          }
+        }
+      }
+    },
+    "Current-Weather-future": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "bool",
+          "example": true
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "cod": {
+              "type": "string",
+              "example": 200
+            },
+            "message": {
+              "type": "int",
+              "example": 0
+            },
+            "cnt": {
+              "type": "int",
+              "example": 3
+            },
+            "list": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "dt": {
+                    "type": "int",
+                    "example": 1634230800
+                  },
+                  "main": {
+                    "type": "object",
+                    "properties": {
+                      "temp": {
+                        "type": "float",
+                        "example": 23.27
+                      },
+                      "feels_like": {
+                        "type": "float",
+                        "example": 23.14
+                      },
+                      "temp_min": {
+                        "type": "float",
+                        "example": 23.27
+                      },
+                      "temp_max": {
+                        "type": "float",
+                        "example": 24.36
+                      },
+                      "pressure": {
+                        "type": "int",
+                        "example": 1018
+                      },
+                      "sea_level": {
+                        "type": "int",
+                        "example": 1018
+                      },
+                      "grnd_level": {
+                        "type": "int",
+                        "example": 893
+                      },
+                      "humidity": {
+                        "type": "int",
+                        "example": 57
+                      },
+                      "temp_kf": {
+                        "type": "float",
+                        "example": -1.09
+                      }
+                    }
+                  },
+                  "weather": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "int",
+                          "example": 801
+                        },
+                        "main": {
+                          "type": "string",
+                          "example": "Clouds"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "algo de nubes"
+                        },
+                        "icon": {
+                          "type": "string",
+                          "example": "02d"
+                        }
+                      }
+                    }
+                  },
+                  "clouds": {
+                    "type": "object",
+                    "properties": {
+                      "all": {
+                        "type": "int",
+                        "example": 17
+                      }
+                    }
+                  },
+                  "wind": {
+                    "type": "object",
+                    "properties": {
+                      "speed": {
+                        "type": "float",
+                        "example": 0.55
+                      },
+                      "deg": {
+                        "type": "int",
+                        "example": 180
+                      },
+                      "gust": {
+                        "type": "float",
+                        "example": 0.86
+                      }
+                    }
+                  },
+                  "visibility": {
+                    "type": "int",
+                    "example": 10000
+                  },
+                  "dt_txt": {
+                    "type": "date",
+                    "example": "2021-10-14 17:00:00"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
