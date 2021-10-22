@@ -10,7 +10,7 @@ const path = require('path');
 const cors = require('cors');
 
 
-  // const dbHelper = require('./helpers/db.helper')
+// const dbHelper = require('./helpers/db.helper')
 const config = require('./config')
 const instance = axios.create();
 // const cron = require('./cron')
@@ -20,14 +20,14 @@ const API_URL = config.baseURL
 
 app.use(compression())
 
-// Configurar CORS
-app.use(cors());
+// // Configurar CORS
+// app.use(cors());
 
-// Lectura y parseo del body
-app.use( express.json() );
+// // Lectura y parseo del body
+// app.use( express.json() );
 
-// Directorio publico
-app.use( express.static('public') );
+// // Directorio publico
+// app.use( express.static('public') );
 
 // CORS
 app.use((req, res, next) => {
@@ -72,9 +72,9 @@ async function startServer() {
     const { port } = config.api
     instance.defaults.proxy = { port: config.api }
       // await dbHelper.authenticate()
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve( __dirname, 'public/index.html'));
-    });
+      // app.get('*', (req, res) => {
+      //   res.sendFile(path.resolve(__dirname, 'public/index.html'));
+      // });
     app.listen(port, () => {
       console.log(
         new Date().toISOString(),
