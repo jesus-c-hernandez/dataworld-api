@@ -4,7 +4,6 @@ require('dotenv').config();
 const dbConnection = async () => {
 
     try {
-        //mongoose.set('useCreateIndex', true);
         mongoose.connect( process.env.DB_CNN, 
                 {
                     useNewUrlParser: true, 

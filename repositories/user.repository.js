@@ -9,11 +9,19 @@ class UserRepository {
             await userDB.save();
 
             return userDB;
-
         } catch (error) {
             return error;
         }
         
+    }
+
+    async update(uid, campos){
+        try {
+            const userUpdated = await User.findByIdAndUpdate( uid, campos, { new: true } );
+            return userUpdated;
+        } catch (error) {
+            return error;
+        }
     }
 
 }

@@ -15,13 +15,12 @@ class UserController {
 
   async update(req, res, next) {
     try {
-      const data = await UserService.update(req.userData)
+      const data = await UserService.update(req.userData, res)
       console.log('data', data)
       res.status(200).json({ result: true, data })
       next()
     } catch (error) {
-      console.log("ERROR C",error)
-      res.status(400).json({ result: false, error: error.message})
+      res.status(400).json({ result: false, error: error.message })
       next(error)
     }
   }
