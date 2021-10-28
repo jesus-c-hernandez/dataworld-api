@@ -25,6 +25,12 @@ class UserValidator {
       language: Joi.string().required()
     }).options({ allowUnknown: true, stripUnknown: true })
   }
+
+  get() {
+    return Joi.object().keys({
+      id: Joi.string().required(),
+    }).options({ allowUnknown: true, stripUnknown: true })
+  }
 }
 
 module.exports = new UserValidator();

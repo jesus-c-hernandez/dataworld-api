@@ -38,6 +38,19 @@ class UserService {
       throw new Error("Verifique los datos");
     }
   }
+
+  async get(user){
+
+    const uid = user.id;
+    const userDB = await User.findById(uid);
+
+    if(!userDB){
+      throw new Error("No existe un usuario con este ID");
+    } else{
+      return userDB;
+    }
+
+  }
 }
 
 module.exports = new UserService();
