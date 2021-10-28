@@ -8,6 +8,7 @@ const app = require('express')()
 const bodyParser = require('body-parser')
 const path = require('path');
 const cors = require('cors');
+const { dbConnection } = require('./database/config');
 
 
 // const dbHelper = require('./helpers/db.helper')
@@ -63,6 +64,9 @@ app.use(
 app.use(helmet())
 if (config.api.logger) app.use(morgan('common'))
 app.set('trust proxy', true)
+
+// Base de datos
+dbConnection();
 
 app.use(API_URL, require('./routers'))
 
