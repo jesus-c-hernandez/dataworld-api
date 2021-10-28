@@ -27,6 +27,21 @@ class UserMiddleware {
       next(error)
     }
   }
+
+  async get(req, res, next) {
+    try {
+      req.userData = await UserValidator.get().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
 }
+
+
 
 module.exports = new UserMiddleware();
