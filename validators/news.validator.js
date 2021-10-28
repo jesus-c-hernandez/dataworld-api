@@ -1,11 +1,20 @@
 const Joi = require('joi')
 
+const globalKey = {
+  countries: Joi.string().required(),
+  languages: Joi.string().required()
+}
 class NewsValidator {
-  get() {
-    return Joi.object().keys({
-      countries: Joi.string().required(),
-      languages: Joi.string().required(),
-    }).options({ allowUnknown: true, stripUnknown: true })
+  getHealth() {
+    return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
+  }
+
+  getScience() {
+    return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
+  }
+
+  getTechnology() {
+    return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
   }
 
 }
