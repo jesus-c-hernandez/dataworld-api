@@ -1,14 +1,42 @@
+const { response } = require("express");
 const bcrypt = require("bcryptjs");
 const UserRepository = require("../repositories/user.repository");
 const User = require("../models/user.model");
+const { generarJWT } = require("../helpers/jwt");
 
 class UserService {
-  async create(user) {
-    const salt = bcrypt.genSaltSync();
-    user.password = bcrypt.hashSync(user.password, salt);
+  async create(req, res = response) {
+    const { email, password } = req.body;
 
-    //console.log(user);
-    return UserRepository.create({ ...user });
+    const emailExist = await User.findOne({ email });
+    if (emailExist) {
+      return res.status(400).json({
+        ok: false,
+        msg: "El correo ya existe",
+      });
+    }
+    const user = new User(req.body);
+
+    // Encriptar contraseña
+    const salt = bcrypt.genSaltSync();
+    user.password = bcrypt.hashSync(password, salt);
+
+    // Guardar usuario
+    await user.save();
+
+    // Generar token
+    const token = await generarJWT(user.id);
+
+    res.json({
+      ok: true,
+      user,
+      token,
+    });
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: "Error inesperado... revisar logs",
+    });
   }
 
   async update(user) {
@@ -39,17 +67,15 @@ class UserService {
     }
   }
 
-  async get(user){
-
+  async get(user) {
     const uid = user.id;
     const userDB = await User.findById(uid);
 
-    if(!userDB){
+    if (!userDB) {
       throw new Error("No existe un usuario con este ID");
-    } else{
+    } else {
       return userDB;
     }
-
   }
 }
 

@@ -3,7 +3,7 @@ const UserService = require('../services/user.service')
 class UserController {
   async create(req, res, next) {
     try {
-      const data = await UserService.create(req.userData)
+      const data = await UserService.create(req, res)
       console.log('data', data)
       res.status(200).json({ result: true, data })
       next()
