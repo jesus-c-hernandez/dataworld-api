@@ -1,4 +1,7 @@
-const AuthService = require('../services/auth.service')
+const AuthService = require('../services/auth.service');
+const { generarJWT } = require('../helpers/jwt');
+const User = require('../models/user.model');
+const { response } = require('express');
 
 class AuthController {
   async login(req, res, next) {
@@ -11,6 +14,23 @@ class AuthController {
       res.status(400).json({ result: false, error })
       next(error)
     }
+  }
+
+  async renew(req, res, next) {
+    const uid = req.uid;
+
+    // Generar token
+    const token = await generarJWT( uid );
+
+    //Obtener el usuario por id 
+
+    const user = await User.findById( uid );
+
+    res.json({
+        ok: true,
+        token,
+        user
+    });
   }
 }
 
