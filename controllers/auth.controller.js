@@ -1,12 +1,11 @@
 const AuthService = require('../services/auth.service');
 const { generarJWT } = require('../helpers/jwt');
 const User = require('../models/user.model');
-const { response } = require('express');
 
 class AuthController {
   async login(req, res, next) {
     try {
-      const token = await AuthService.login(req.authData)
+      const token = await AuthService.login(req, res)
       console.log('token', token)
       res.status(200).json({ result: true, token })
       next()
@@ -27,7 +26,7 @@ class AuthController {
     const user = await User.findById( uid );
 
     res.json({
-        ok: true,
+        result: true,
         token,
         user
     });

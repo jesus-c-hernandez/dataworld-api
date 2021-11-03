@@ -15,7 +15,7 @@ class UserValidator {
 
   update() {
     return Joi.object().keys({
-      id: Joi.string().required(),
+      id: Joi.string().length(24).required(),
       name: Joi.string().required(),
       email: Joi.string().required(),
       password: Joi.string().required(),

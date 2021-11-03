@@ -1,28 +1,46 @@
 const bcrypt = require("bcryptjs");
+const { response } = require('express');
 const User = require("../models/user.model");
 const {generarJWT} = require("../helpers/jwt");
 
+
 class AuthService {
 
-    async login(user){
+    async login(req, res = response){
 
-        const {email, password} = user;
-        const userDB = await User.findOne({email});
+        const { email, password } = req.body;
 
-        if(!userDB){
-            throw new Error("Email no encontrado");
+        // Verificar email
+        const userDB = await User.findOne({ email });
+
+        if( !userDB ){
+            res.status(404).json({
+                result: false,
+                msg: 'Email no encontrado'
+            });
         }
 
+        // Verificar password
         const validPass = bcrypt.compareSync( password, userDB.password );
-
-        if(!validPass){
-            throw new Error("Contraseña no valida");
+        if( !validPass ){
+            return res.status(400).json({
+                result: false,
+                msg: 'Contraseña no valida'
+            });
         }
 
-        const token = await generarJWT(userDB.id);
+        // Generar token
+        const token = await generarJWT( userDB.id );
 
-        return token;
-
+        res.json({
+            result: true,
+            token,
+        });
+        console.log( error );
+        res.status(500).json({
+            result: false,
+            msg: 'Hable con el administrador'
+        });
     }
 
 }

@@ -21,7 +21,7 @@ class AuthMiddleware {
 
     if ( !token ) {
         return res.status(401).json({
-            ok: false,
+            result: false,
             msg: 'No hay token en la petición'
         });
     }
@@ -35,7 +35,7 @@ class AuthMiddleware {
 
     } catch (error) {
         return res.status(401).json({
-            ok: false,
+            result: false,
             msg: 'Token no válido'
         });
     }
