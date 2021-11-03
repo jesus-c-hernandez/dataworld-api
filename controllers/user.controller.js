@@ -15,7 +15,7 @@ class UserController {
 
   async update(req, res, next) {
     try {
-      const data = await UserService.update(req.userData, res)
+      const data = await UserService.update(req, res)
       console.log('data', data)
       res.status(200).json({ result: true, data })
       next()
