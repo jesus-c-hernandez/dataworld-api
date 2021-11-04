@@ -1,7 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
-// const FilterPropertiesService = require('./filter-properties.service.js')
-
+const CovidRepository = require('../repositories/covid.repository')
 
 class CovidService {
   async getCases(covidData) {
@@ -17,27 +16,23 @@ class CovidService {
   }
 
   async getTodayCases(covidData) {
-    // console.log(currentWeather);
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + process.env.API_KEY_COVID
-      }
-    }
-    const resp = await axios.get(`https://gateway.nubentos.com/nubentos.com/ncovapi/2.0.0/todayCases?country=${covidData.country}`, config)
-      // console.log(resp);
-    return resp.data;
+    // try {
+    //   let resp = await CovidRepository.getCasesDay(covidData.country)
+    //   return resp
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   async getActiveCases(covidData) {
-    // console.log(currentWeather);
-    let config = {
-      headers: {
-        'Authorization': 'Bearer ' + process.env.API_KEY_COVID
-      }
+    try {
+      let resp = []
+      let respDB = await CovidRepository.getActiveCasesSum(covidData.country)
+      resp.push(respDB._doc)
+      return resp
+    } catch (error) {
+      console.log(error);
     }
-    const resp = await axios.get(`https://gateway.nubentos.com/nubentos.com/ncovapi/2.0.0/active?country=${covidData.country}`, config)
-      // console.log(resp);
-    return resp.data;
   }
 
   async getTotalDeaths(covidData) {

@@ -30,7 +30,7 @@ class CovidController {
   async getActiveCases(req, res, next) {
     try {
       // console.log(req.covidData);
-      const data = await CovidService.getActiveCases(req.covidData)
+      let data = await CovidService.getActiveCases(req.covidData)
       const newData = FilterPropertiesService.filterCovidJSON(data, 3)
       res.status(200).json({ result: true, data: newData })
       next()
