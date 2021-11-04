@@ -52,7 +52,7 @@ class UserService {
     }
 
     // Actualizaciones
-    const { password, google, email, ...campos } = req.body;
+    const { google, email, ...campos } = req.body;
     if (userDB.email != email) {
       const emailExist = await User.findOne({ email });
       if (emailExist) {

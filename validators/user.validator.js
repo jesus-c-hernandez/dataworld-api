@@ -18,7 +18,6 @@ class UserValidator {
       id: Joi.string().length(24).required(),
       name: Joi.string().required(),
       email: Joi.string().required(),
-      password: Joi.string().required(),
       google: Joi.boolean().optional().default(false),
       country: Joi.string().required(),
       timeZone: Joi.string().required(),
