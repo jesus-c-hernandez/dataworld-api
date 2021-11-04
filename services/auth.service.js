@@ -35,6 +35,7 @@ class AuthService {
         res.json({
             result: true,
             token,
+            user: userDB
         });
         console.log( error );
         res.status(500).json({
