@@ -26,6 +26,7 @@ class FilterPropertiesService {
 
   filterCovidJSON(objectDataJSON, n) {
     let newObjectDataJSON = []
+    console.log(objectDataJSON);
     objectDataJSON.forEach(dato => {
       this.base.date = dato.date
       this.base.country = dato.country
