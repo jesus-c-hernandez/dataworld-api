@@ -30,9 +30,23 @@ class CovidMiddleware {
     }
   }
 
-  async getActiveCases(req, res, next) {
+  async getActiveCasesSum(req, res, next) {
     try {
-      req.covidData = await CovidValidator.getActiveCases().validateAsync({
+      req.covidData = await CovidValidator.getActiveCasesSum().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getActiveCasesDay(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getActiveCasesDay().validateAsync({
           ...req.query,
           ...req.params,
           ...req.body
@@ -72,9 +86,9 @@ class CovidMiddleware {
     }
   }
 
-  async getRecoveredCases(req, res, next) {
+  async getRecoveredCasesSum(req, res, next) {
     try {
-      req.covidData = await CovidValidator.getRecoveredCases().validateAsync({
+      req.covidData = await CovidValidator.getRecoveredCasesSum().validateAsync({
           ...req.query,
           ...req.params,
           ...req.body
@@ -86,9 +100,37 @@ class CovidMiddleware {
     }
   }
 
-  async getTestTotals(req, res, next) {
+  async getRecoveredCasesDay(req, res, next) {
     try {
-      req.covidData = await CovidValidator.getTestTotals().validateAsync({
+      req.covidData = await CovidValidator.getRecoveredCasesDay().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTestSum(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getTestSum().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.covidData);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTestDay(req, res, next) {
+    try {
+      req.covidData = await CovidValidator.getTestDay().validateAsync({
           ...req.query,
           ...req.params,
           ...req.body

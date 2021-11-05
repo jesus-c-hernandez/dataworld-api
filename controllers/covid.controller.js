@@ -27,11 +27,24 @@ class CovidController {
     }
   }
 
-  async getActiveCases(req, res, next) {
+  async getActiveCasesSum(req, res, next) {
     try {
       // console.log(req.covidData);
-      let data = await CovidService.getActiveCases(req.covidData)
+      let data = await CovidService.getActiveCasesSum(req.covidData)
       const newData = FilterPropertiesService.filterCovidJSON(data, 3)
+      res.status(200).json({ result: true, data: newData })
+      next()
+    } catch (error) {
+      res.status(400).json({ result: false, error })
+      next(error)
+    }
+  }
+
+  async getActiveCasesDay(req, res, next) {
+    try {
+      // console.log(req.covidData);
+      let data = await CovidService.getActiveCasesDay(req.covidData)
+      const newData = FilterPropertiesService.filterCovidJSON(data, 8)
       res.status(200).json({ result: true, data: newData })
       next()
     } catch (error) {
@@ -66,10 +79,10 @@ class CovidController {
     }
   }
 
-  async getRecoveredCases(req, res, next) {
+  async getRecoveredCasesSum(req, res, next) {
     try {
       // console.log(req.covidData);
-      const data = await CovidService.getRecoveredCases(req.covidData)
+      const data = await CovidService.getRecoveredCasesSum(req.covidData)
       const newData = FilterPropertiesService.filterCovidJSON(data, 6)
       res.status(200).json({ result: true, data: newData })
       next()
@@ -79,11 +92,37 @@ class CovidController {
     }
   }
 
-  async getTestTotals(req, res, next) {
+  async getRecoveredCasesDay(req, res, next) {
     try {
       // console.log(req.covidData);
-      const data = await CovidService.getTestTotals(req.covidData)
+      const data = await CovidService.getRecoveredCasesDay(req.covidData)
+      const newData = FilterPropertiesService.filterCovidJSON(data, 9)
+      res.status(200).json({ result: true, data: newData })
+      next()
+    } catch (error) {
+      res.status(400).json({ result: false, error })
+      next(error)
+    }
+  }
+
+  async getTestSum(req, res, next) {
+    try {
+      // console.log(req.covidData);
+      const data = await CovidService.getTestSum(req.covidData)
       const newData = FilterPropertiesService.filterCovidJSON(data, 7)
+      res.status(200).json({ result: true, data: newData })
+      next()
+    } catch (error) {
+      res.status(400).json({ result: false, error })
+      next(error)
+    }
+  }
+
+  async getTestDay(req, res, next) {
+    try {
+      // console.log(req.covidData);
+      const data = await CovidService.getTestDay(req.covidData)
+      const newData = FilterPropertiesService.filterCovidJSON(data, 10)
       res.status(200).json({ result: true, data: newData })
       next()
     } catch (error) {

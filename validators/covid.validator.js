@@ -11,7 +11,10 @@ class CovidValidator {
   getTodayCases() {
     return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
   }
-  getActiveCases() {
+  getActiveCasesSum() {
+    return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
+  }
+  getActiveCasesDay() {
     return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
   }
   getTotalDeaths() {
@@ -20,10 +23,16 @@ class CovidValidator {
   getTodayDeaths() {
     return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
   }
-  getRecoveredCases() {
+  getRecoveredCasesSum() {
     return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
   }
-  getTestTotals() {
+  getRecoveredCasesDay() {
+    return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
+  }
+  getTestSum() {
+    return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
+  }
+  getTestDay() {
     return Joi.object().keys(globalKey).options({ allowUnknown: true, stripUnknown: true })
   }
 }

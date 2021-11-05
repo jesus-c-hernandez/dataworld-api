@@ -41,6 +41,8 @@ class FilterPropertiesService {
         case 3:
           this.base.desc = "Total de casos activos hasta el día de HOY"
           break;
+        case 8:
+          this.base.desc = "Total de casos activos del día de HOY"
         case 4:
           this.base.desc = "Total de muertes hasta el día de HOY"
           break;
@@ -50,8 +52,14 @@ class FilterPropertiesService {
         case 6:
           this.base.desc = "Total de casos recuperados hasta el día de HOY"
           break;
+        case 9:
+          this.base.desc = "Total de casos recuperados del día de HOY"
+          break;
         case 7:
           this.base.desc = "Total de pruebas hasta el día de HOY"
+          break;
+        case 10:
+          this.base.desc = "Total de pruebas del día de HOY"
           break;
         default:
           break;
