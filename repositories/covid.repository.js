@@ -21,7 +21,7 @@ class CovidRepository {
 
   getActiveCasesDay = async(country) => {
     try {
-      let today = moment(new Date(2021, 9, 27)).format("DD-MM-YYYY")
+      let today = moment(new Date(2021, 9, 28)).format("DD-MM-YYYY")
       let resp = CovidActiveCasesDay.findOne({ dateQuery: today, country: country });
       return resp;
     } catch (error) {
@@ -49,7 +49,7 @@ class CovidRepository {
     }
   }
 
-  getRecoveredSum = async(country) => {
+  getRecoveredCasesSum = async(country) => {
     try {
       let today = moment(new Date(2021, 9, 27)).format("DD-MM-YYYY")
       let resp = CovidRecoveredSum.findOne({ dateQuery: today, country: country });
@@ -59,9 +59,9 @@ class CovidRepository {
     }
   }
 
-  getRecoveredDay = async(country) => {
+  getRecoveredCasesDay = async(country) => {
     try {
-      let today = moment(new Date(2021, 9, 27)).format("DD-MM-YYYY")
+      let today = moment(new Date(2021, 9, 28)).format("DD-MM-YYYY")
       let resp = CovidRecoveredDay.findOne({ dateQuery: today, country: country });
       return resp;
     } catch (error) {
@@ -81,7 +81,7 @@ class CovidRepository {
 
   getTestDay = async(country) => {
     try {
-      let today = moment(new Date(2021, 9, 27)).format("DD-MM-YYYY")
+      let today = moment(new Date(2021, 9, 28)).format("DD-MM-YYYY")
       let resp = CovidTestDay.findOne({ dateQuery: today, country: country });
       return resp;
     } catch (error) {
