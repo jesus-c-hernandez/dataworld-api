@@ -2,13 +2,17 @@ const axios = require('axios');
 require('dotenv').config();
 const CovidRepository = require('../repositories/covid.repository')
 
+const config = {
+  headers: {
+    'Authorization': 'Bearer ' + process.env.API_KEY_COVID
+  }
+}
+
 class CovidService {
-  async getCases(covidData) {
+  async getCases({ country }) {
     try {
-      let resp = []
-      let respDB = await CovidRepository.getRecoveredCasesSum(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      const resp = await axios.get(`${process.env.COVID_DIR}/cases?country=${country}`, config)
+      return resp.data[0]
     } catch (error) {
       console.log(error);
     }
@@ -16,43 +20,19 @@ class CovidService {
 
   async getTodayCases(covidData) {
     try {
-      let resp = []
-      let respDB = await CovidRepository.getCases(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      let respDB = await CovidRepository.getTodayCases(covidData.country)
+      delete respDB._id
+      return respDB
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getActiveCasesSum(covidData) {
+  async getActiveCases(covidData) {
     try {
-      let resp = []
-      let respDB = await CovidRepository.getActiveCasesSum(covidData.country)
-      resp.push(respDB._doc)
-      return resp
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async getActiveCasesDay(covidData) {
-    try {
-      let resp = []
-      let respDB = await CovidRepository.getActiveCasesDay(covidData.country)
-      resp.push(respDB._doc)
-      return resp
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async getTotalDeaths(covidData) {
-    try {
-      let resp = []
-      let respDB = await CovidRepository.getDeaths(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      let respDB = await CovidRepository.getActiveCases(covidData.country)
+      delete respDB._id
+      return respDB
     } catch (error) {
       console.log(error);
     }
@@ -60,47 +40,75 @@ class CovidService {
 
   async getRecoveredCasesSum(covidData) {
     try {
-      let resp = []
       let respDB = await CovidRepository.getRecoveredCasesSum(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      delete respDB._id
+      return respDB
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getRecoveredCasesDay(covidData) {
+  async getTodayDeaths (covidData) {
     try {
-      let resp = []
-      let respDB = await CovidRepository.getRecoveredCasesDay(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      let respDB = await CovidRepository.getTodayDeaths(covidData.country)
+      delete respDB._id
+      return respDB
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getTestSum(covidData) {
+  async getTotalDeaths({ country }) {
     try {
-      let resp = []
-      let respDB = await CovidRepository.getTestSum(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      const resp = await axios.get(`${process.env.COVID_DIR}/deaths?country=${country}`, config)
+      return resp.data[0]
     } catch (error) {
       console.log(error);
     }
   }
 
-  async getTestDay(covidData) {
+  async getTestSum({ country }) {
     try {
-      let resp = []
-      let respDB = await CovidRepository.getTestDay(covidData.country)
-      resp.push(respDB._doc)
-      return resp
+      const resp = await axios.get(`${process.env.COVID_DIR}/totalTests?country=${country}`, config)
+      return resp.data[0]
     } catch (error) {
       console.log(error);
     }
   }
+
+  // async getActiveCasesDay(covidData) {
+  //   try {
+  //     let resp = []
+  //     let respDB = await CovidRepository.getActiveCasesDay(covidData.country)
+  //     resp.push(respDB._doc)
+  //     return resp
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+  // async getRecoveredCasesDay(covidData) {
+  //   try {
+  //     let resp = []
+  //     let respDB = await CovidRepository.getRecoveredCasesDay(covidData.country)
+  //     resp.push(respDB._doc)
+  //     return resp
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
+
+  // async getTestDay(covidData) {
+  //   try {
+  //     let resp = []
+  //     let respDB = await CovidRepository.getTestDay(covidData.country)
+  //     resp.push(respDB._doc)
+  //     return resp
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
 
 module.exports = new CovidService()
