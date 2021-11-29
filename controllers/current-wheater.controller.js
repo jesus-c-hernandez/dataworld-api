@@ -24,6 +24,18 @@ class CurrentWeatherController {
       next(error)
     }
   }
+
+  async getNextDays(req, res, next) {
+    try {
+      // console.log(req.currentWeather);
+      const data = await CurrentWeatherService.getNextDays(req.currentWeather)
+      res.status(200).json({ result: true, data })
+      next()
+    } catch (error) {
+      res.status(400).json({ result: false, error })
+      next(error)
+    }
+  }
 }
 
 module.exports = new CurrentWeatherController()
