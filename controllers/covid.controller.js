@@ -6,7 +6,11 @@ class CovidController {
     try {
       // console.log(req.covidData);
       const data = await CovidService.getCases(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       res.status(400).json({ result: false, error })
@@ -17,7 +21,11 @@ class CovidController {
     try {
       // console.log(req.covidData);
       const data = await CovidService.getTodayCases(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       res.status(400).json({ result: false, error })
@@ -29,7 +37,11 @@ class CovidController {
     try {
       // console.log(req.covidData);
       const data = await CovidService.getActiveCases(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       res.status(400).json({ result: false, error })
@@ -41,7 +53,11 @@ class CovidController {
     try {
       // console.log(req.covidData);
       const data = await CovidService.getRecoveredCasesSum(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       res.status(400).json({ result: false, error })
@@ -53,7 +69,11 @@ class CovidController {
     try {
       // console.log(req.covidData);
       const data = await CovidService.getTodayDeaths(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       res.status(400).json({ result: false, error })
@@ -64,7 +84,11 @@ class CovidController {
   async getTotalDeaths(req, res, next) {
     try {
       const data = await CovidService.getCases(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       console.log(error);
@@ -75,7 +99,11 @@ class CovidController {
     try {
       // console.log(req.covidData);
       const data = await CovidService.getTestSum(req.covidData)
-      res.status(200).json({ result: true, data: data })
+      if(data){
+        res.status(200).json({ result: true, data: data })
+      } else {
+        res.status(200).json({ result: true, data: 'No hay datos' })
+      }
       next()
     } catch (error) {
       res.status(400).json({ result: false, error })
