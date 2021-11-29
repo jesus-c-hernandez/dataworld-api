@@ -4,5 +4,6 @@ const CurrentWeatherController = require('../controllers/current-wheater.control
 
 router.get('/current-weather', CurrentWeatherMiddleware.get, CurrentWeatherController.get)
 router.get('/current-weather/future', CurrentWeatherMiddleware.getFuture, CurrentWeatherController.getFuture)
+router.get('/next-days', CurrentWeatherMiddleware.getNextDays, CurrentWeatherController.getNextDays )
 
 module.exports = router;

@@ -29,6 +29,20 @@ class CurrentWeatherMiddleware {
       next(error)
     }
   }
+
+  async getNextDays(req, res, next) {
+    try {
+      req.currentWeather = await CurrentWeatherValidator.getNextDays().validateAsync({
+          ...req.query,
+          ...req.params,
+          ...req.body
+        })
+        // console.log(req.currentWeather);
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 module.exports = new CurrentWeatherMiddleware()
