@@ -4,6 +4,7 @@ const CovidRoter = require('./covid.router')
 const NewsRouter = require('./news.router')
 const UserRouter = require('./user.router')
 const AuthRouter = require('./auth.router')
+const CityRouter = require('./city.router')
 
 const app = express()
 
@@ -12,7 +13,8 @@ app.use(
   CovidRoter,
   NewsRouter,
   UserRouter,
-  AuthRouter
+  AuthRouter,
+  CityRouter
 )
 
 // app.use((err, req, res, next) => {
