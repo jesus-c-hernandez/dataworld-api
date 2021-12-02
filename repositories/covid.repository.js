@@ -12,9 +12,8 @@ class CovidRepository {
 
   getTodayCases = async (country) => {
     try {
-      const today = moment(new Date()).subtract(1,'d').format("DD-MM-YYYY");
+      const today = moment(new Date()).format("DD-MM-YYYY");
       const resp = await CovidCasesToday.findOne({ dateQuery: today, country: country });
-      console.log(resp);
       return resp._doc;
     } catch (error) {
       console.log(error);
@@ -33,7 +32,7 @@ class CovidRepository {
 
   getRecoveredCasesSum = async(country) => {
     try {
-      let today = moment(new Date()).subtract(1,'d').format("DD-MM-YYYY")
+      let today = moment(new Date()).subtract(2,'d').format("DD-MM-YYYY")
       let resp = await CovidRecoveredSum.findOne({ dateQuery: today, country: country });
       return resp._doc;
     } catch (error) {
@@ -43,7 +42,7 @@ class CovidRepository {
 
   getTodayDeaths = async (country) => {
     try {
-      let today = moment(new Date()).subtract(1,'d').format("DD-MM-YYYY")
+      let today = moment(new Date()).subtract(3,'d').format("DD-MM-YYYY")
       let resp = await CovidDeath.findOne({ dateQuery: today, country: country });
       return resp._doc;
     } catch (error) {
