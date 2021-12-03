@@ -5,10 +5,13 @@ class NewsController {
     try {
       // console.log(req.currentWeather);
       const data = await NewsService.getHealth(req.newsData)
+      if( data.isAxiosError ){
+        res.status(400).json({ result: false, data: error })
+      }
       res.status(200).json({ result: true, data })
       next()
     } catch (error) {
-      res.status(400).json({ result: false, error })
+      res.status(400).json({ result: false, data: error })
       next(error)
     }
   }
@@ -17,10 +20,13 @@ class NewsController {
     try {
       // console.log(req.currentWeather);
       const data = await NewsService.getScience(req.newsData)
+      if( data.isAxiosError ){
+        res.status(400).json({ result: false, data: error })
+      }
       res.status(200).json({ result: true, data })
       next()
     } catch (error) {
-      res.status(400).json({ result: false, error })
+      res.status(400).json({ result: false, data: error })
       next(error)
     }
   }
@@ -29,10 +35,13 @@ class NewsController {
     try {
       // console.log(req.currentWeather);
       const data = await NewsService.getTechnology(req.newsData)
+      if( data.isAxiosError ){
+        res.status(400).json({ result: false, data: error })
+      }
       res.status(200).json({ result: true, data })
       next()
     } catch (error) {
-      res.status(400).json({ result: false, error })
+      res.status(400).json({ result: false, data: error })
       next(error)
     }
   }
